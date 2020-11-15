@@ -60,11 +60,11 @@ namespace laba_5
             temp = (temp <= 6) ? temp : 12 - temp;
 
             if (temp == 0 || temp == 6)
-                return 1;
-            else if (temp == 2)
-                return 2;
-            else if (temp == 4)
                 return 3;
+            else if (temp == 2)
+                return 6;
+            else if (temp == 4)
+                return 9;
             return 0;
         }
     }

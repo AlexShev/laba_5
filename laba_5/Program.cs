@@ -27,16 +27,16 @@ namespace laba_5
         {
             try
             {
-                Person a = new Person(new FulName("Шевченко", "Алексей", "Витальевич"), new DateTime(2000, 10, 20));
-                Person b = new Person(new FulName("ИвАНОва", "Александра", "АлексеевнА"), new DateTime(2001, 6, 20));
+                Person a = new Person(new FulName("Шевченко", "Виталий", "Анатольевич"), new DateTime(1970, 5, 13));
+                Person b = new Person(new FulName("Шевченко", "Светлана", "Викторовна"), new DateTime(1975, 3, 3));
                 a.Show();
                 b.Show();
 
                 int temp = a.IsAPaer(b);
 
-                string str = (temp == 0) ? "Не подходят": 
-                    (temp == 1) ? "Подходят, но слабо":
-                    (temp == 2) ? "Подходят, класическая пара":
+                string str = (temp <= 5) ? "Не подходят": 
+                    (temp <= 9) ? "Подходят, но слабо":
+                    (temp <= 14) ? "Подходят, класическая пара":
                     "Подходят, стоит задуматься о браке";
 
                 Console.WriteLine(str);

@@ -12,6 +12,9 @@ namespace laba_5
 
         private readonly ZodiacSign _myZodiacSign;
 
+        private readonly СompatibilityByName _сompatibilityByName;
+
+
         public Person(FulName myFulName, DateTime birthday)
         {
             _myFulName = myFulName;
@@ -21,6 +24,8 @@ namespace laba_5
             _mySex = FulName.Sex(_myFulName);
 
             _myZodiacSign = new ZodiacSign(birthday);
+
+            _сompatibilityByName = new СompatibilityByName(_myFulName.FerstName);
         }
 
         public string MyFulName { get { return _myFulName.ToString(); } }
@@ -52,9 +57,7 @@ namespace laba_5
         {
             int result = 0;
 
-
             // спорное ограничение, но так как это не живое общение, то человек просто сам отфильтрует по возрасту
-
             int maxAgeDif = (MyAge >= 23) ? 5 : (MyAge <= 18) ? 1 : MyAge - 18;
 
             if (_mySex != person._mySex)
@@ -62,7 +65,9 @@ namespace laba_5
                 if (Math.Abs(MyAge - person.MyAge) > maxAgeDif)
                     return 0;
 
-                result = _myZodiacSign.IsAPaer(person._myZodiacSign);
+                result += _сompatibilityByName.IsAPaer(person._сompatibilityByName);
+
+                result += _myZodiacSign.IsAPaer(person._myZodiacSign);
             }
 
             return result;
