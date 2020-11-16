@@ -2,7 +2,7 @@
 
 namespace laba_5
 {
-    class Person
+    class Person : Human
     {
         private readonly FulName _myFulName;
 
@@ -18,7 +18,8 @@ namespace laba_5
 
         private readonly СompatibilityByName _myCompatibilityByName;
 
-        public Person(FulName myFulName, DateTime myBirthday, string myCity, string myPhoneNumber)
+        public Person(FulName myFulName, DateTime myBirthday, string myCity, string myPhoneNumber, string login, string password)
+            :base(login, password)
         {
             // кривая проверка на age>=0
             // может стоит установить ограничение 18?
@@ -95,6 +96,8 @@ namespace laba_5
             
             return result;
         }
+
+        public override bool Posibility() { return false; }
 
         public void Show()
         {
