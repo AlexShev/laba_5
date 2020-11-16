@@ -4,7 +4,8 @@ namespace laba_5
 {
     class СompatibilityByName
     {
-        private static Dictionary<int, SortedSet<char>> _map
+        // очень криво, но в голову ничего лучше не пришло
+        private static readonly Dictionary<int, SortedSet<char>> _map
             = new Dictionary<int, SortedSet<char>>
             {
                 {1, new SortedSet<char> {'а', 'и','с', 'ъ'} },
@@ -18,7 +19,7 @@ namespace laba_5
                 {9, new SortedSet<char> {'з', 'р','щ'} },
             };
 
-        private static int[,] _arr = 
+        private static readonly int[,] _arr = 
         {
             {5,8,3,8,3,9,7,7,9},
             {8,3,7,5,4,6,6,8,5},
@@ -51,7 +52,7 @@ namespace laba_5
 
         public int IsAPaer(in СompatibilityByName person)
         {
-            return _arr[_myNamber, person._myNamber];
+            return _arr[_myNamber-1, person._myNamber-1];
         }
 
         private static int DigitsSum(int number)

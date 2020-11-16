@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace laba_5
 {
@@ -14,6 +15,8 @@ namespace laba_5
         public string MidlName { get { return _midlName; } }
         public string SecondName { get { return _secondName; } }
 
+
+        // спорное решение конечно, ход расчитан для более серьёзного анализа
         public static char Sex(in FulName fulName)
         {
                 if (fulName._midlName.EndsWith('ч'))
@@ -26,37 +29,31 @@ namespace laba_5
 
         public FulName(string secondName, string ferstName, string midlName)
         {
-            IsAName(ferstName);
-            IsAName(midlName);
-            IsAName(secondName);
+            _ferstName = StandartView.ConverteToStandartString(ferstName);
 
-            _ferstName = ConverteToStandartView(ferstName);
-            _midlName = ConverteToStandartView(midlName);
-            _secondName = ConverteToStandartView(secondName);
+            _midlName = StandartView.ConverteToStandartString(midlName);
+
+            _secondName = StandartView.ConverteToStandartString(secondName);
+        }
+
+        public FulName(string fulName)
+        {
+            string[] sfm = fulName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (sfm.Length > 3)
+                throw new System.Exception($"{fulName} нарушение формата ввода");
+
+           // хочется использовать конструктор повыше
+            _ferstName = StandartView.ConverteToStandartString(sfm[1]);
+
+            _midlName = StandartView.ConverteToStandartString(sfm[2]);
+
+            _secondName = StandartView.ConverteToStandartString(sfm[0]);
         }
 
         public override string ToString()
         {
             return $"{_secondName} {_ferstName} {_midlName}";
-        }
-
-        private void IsAName(string name)
-        {
-            if (!name.ToCharArray().All(char.IsLetter)) throw new System.Exception($"ошибка в {name} это не ФИО");
-        }
-
-        private string ConverteToStandartView(string name)
-        {
-            char[] arr = name.ToCharArray();
-
-            arr[0] = char.ToUpper(arr[0]);
-
-            for (int i = 1; i < arr.Length; i++)
-            {
-                arr[i] = char.ToLower(arr[i]);
-            }
-
-            return new string(arr);
         }
     }
 }

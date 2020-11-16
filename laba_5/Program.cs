@@ -27,8 +27,8 @@ namespace laba_5
         {
             try
             {
-                Person a = new Person(new FulName("Шевченко", "Виталий", "Анатольевич"), new DateTime(1970, 5, 13));
-                Person b = new Person(new FulName("Шевченко", "Светлана", "Викторовна"), new DateTime(1975, 3, 3));
+                Person a = new Person(new FulName("МУРАВЬЁВ-АПОСТОЛ ПЁТР АЛЕКСЕЕВИЧ"), new DateTime(1970, 5, 13), "Ростов-на-дону", "8 912 345 67 01");
+                Person b = new Person(new FulName("Агелера", "Кристина", "Алексеевна"), new DateTime(1975, 3, 3), "Ростов-на-дону", "89126456766");
                 a.Show();
                 b.Show();
 

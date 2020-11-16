@@ -8,32 +8,48 @@ namespace laba_5
 
         private readonly DateTime _myBirthday;
 
+        private readonly string _myCity;
+
+        private readonly string _myPhoneNumber;
+
         private readonly char _mySex;
 
         private readonly ZodiacSign _myZodiacSign;
 
-        private readonly СompatibilityByName _сompatibilityByName;
+        private readonly СompatibilityByName _myCompatibilityByName;
 
-
-        public Person(FulName myFulName, DateTime birthday)
+        public Person(FulName myFulName, DateTime myBirthday, string myCity, string myPhoneNumber)
         {
+            // кривая проверка на age>=0
+            // может стоит установить ограничение 18?
+            _ = MyAge;
+
             _myFulName = myFulName;
 
-            _myBirthday = birthday;
+            _myBirthday = myBirthday;
+
+            _myCity = StandartView.ConverteToStandartString(myCity);
+
+            _myPhoneNumber = StandartView.ConverteToStandartPhoneNumber(myPhoneNumber);
 
             _mySex = FulName.Sex(_myFulName);
 
-            _myZodiacSign = new ZodiacSign(birthday);
+            _myZodiacSign = new ZodiacSign(myBirthday);
 
-            _сompatibilityByName = new СompatibilityByName(_myFulName.FerstName);
+            _myCompatibilityByName = new СompatibilityByName(_myFulName.FerstName);
         }
 
-        public string MyFulName { get { return _myFulName.ToString(); } }
+        public FulName MyFulName { get { return _myFulName; } }
 
         public DateTime MyBirthday { get { return _myBirthday; } }
 
         public char MySex { get { return _mySex; } }
 
+        public string MyCity { get { return _myCity; } }
+
+        public string MyPhoneNumber { get { return _myPhoneNumber; } }
+
+        public string MyZodiacSign { get { return _myZodiacSign.MyZodiacSign.ToString(); } }
 
         // не поле, так как оно должно меняться
         public int MyAge
@@ -55,25 +71,30 @@ namespace laba_5
 
         public int IsAPaer(in Person person)
         {
+            if (_mySex != person._mySex && _myCity == person._myCity)
+            {
+                return IsAPaerWithoutSexAndLocalization(person);
+            }
+
+            return 0;
+        }
+
+        public int IsAPaerWithoutSexAndLocalization(in Person person)
+        {
             int result = 0;
 
             // спорное ограничение, но так как это не живое общение, то человек просто сам отфильтрует по возрасту
             int maxAgeDif = (MyAge >= 23) ? 5 : (MyAge <= 18) ? 1 : MyAge - 18;
 
-            if (_mySex != person._mySex)
-            {
-                if (Math.Abs(MyAge - person.MyAge) > maxAgeDif)
-                    return 0;
+            if (Math.Abs(MyAge - person.MyAge) > maxAgeDif)
+                return 0;
 
-                result += _сompatibilityByName.IsAPaer(person._сompatibilityByName);
+            result += _myCompatibilityByName.IsAPaer(person._myCompatibilityByName);
 
-                result += _myZodiacSign.IsAPaer(person._myZodiacSign);
-            }
-
+            result += _myZodiacSign.IsAPaer(person._myZodiacSign);
+            
             return result;
         }
-
-        public string MyZodiacSign { get { return _myZodiacSign.MyZodiacSign.ToString(); } }
 
         public void Show()
         {

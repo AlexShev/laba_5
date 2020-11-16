@@ -1,38 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="laba_5.FulName" Collapsed="true">
-    <Position X="1.5" Y="1.75" Width="1.5" />
+    <Position X="1.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAgAAAAABAAEAAAABAAABAAAABAAABBAAEAAAAA=</HashCode>
+      <HashCode>AAEAAAgAAAAABAAEAAAAAAAABAAAABAAABBAAAAAAAA=</HashCode>
       <FileName>FulName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Person" Collapsed="true">
-    <Position X="3.75" Y="1" Width="1.5" />
+    <Position X="3.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ADAAAAAAAIAIAEAAAAAAiEAAAAAEAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>ADAAEAAIAIAKAkAgoAAAiAAAAAAEAAAAAAAAAAAAAEA=</HashCode>
       <FileName>Person.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Program" Collapsed="true">
-    <Position X="6.25" Y="1" Width="1.5" />
+    <Position X="6.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.ZodiacSign" Collapsed="true">
-    <Position X="1.5" Y="1" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="laba_5.ZodiacSign._zodiacSign" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>ZodiacSign.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
+    <Position X="1.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ZodiacSign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.СompatibilityByName" Collapsed="true">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAMAAAAABAABAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>СompatibilityByName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.StandartView" Collapsed="true">
+    <Position X="3.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIQAABAABAAAAAAAgEAQAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>StandartView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="10" />
