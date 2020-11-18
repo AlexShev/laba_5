@@ -97,7 +97,7 @@ namespace laba_5
             return result;
         }
 
-        public override bool Posibility() { return false; }
+        public override bool IsAvailable() { return false; }
 
         public void Show()
         {

@@ -8,6 +8,6 @@ namespace laba_5
     {
         public Admin(string login, string passward) : base(login, passward) { }
 
-        public override bool Posibility() { return true; }
+        public override bool IsAvailable() { return true; }
     }
 }

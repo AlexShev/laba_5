@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace laba_5
@@ -8,22 +7,33 @@ namespace laba_5
     {
         private readonly string _login;
 
-        private readonly string _password;
+        private readonly byte[] _password;
 
         public string Login { get{ return _login; } }
 
         public Human(string login, string password)
         {
             StandartView.LoginEr(login);
+
             _login = login;
-            _password = password;
+
+            _password = HachPassword(password);
         }
 
         public bool IsMyPassword(string password)
         {
-            return _password == password;
+            return _password == HachPassword(password);
         }
 
-        public abstract bool Posibility();
+        private byte[] HachPassword(string password)
+        {
+            byte[] tmpSource;
+
+            tmpSource = ASCIIEncoding.ASCII.GetBytes(password);
+
+            return new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+        }
+
+        public abstract bool IsAvailable();
     }
 }
