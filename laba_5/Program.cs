@@ -24,22 +24,24 @@ namespace laba_5
         {
             try
             {
-                Person a = new Person(new FulName("МУРАВЬЁВ-АПОСТОЛ ПЁТР АЛЕКСЕЕВИЧ"), new DateTime(1971, 5, 13),
-                    "Ростов-на-дону", "8 912 345 67 01", "murovey_apostol01", "IYyGyUbyigHG");
-                Person b = new Person(new FulName("Агелера", "Кристина", "Алексеевна"), new DateTime(1975, 3, 3), 
-                    "Ростов-на-дону", "89126456766", "agata_kristy", "jve jvne");
+                ConsolIneractor.Run();
 
-                a.Show();
-                b.Show();
+            //    Client a = new Client(new FulName("МУРАВЬЁВ-АПОСТОЛ ПЁТР АЛЕКСЕЕВИЧ"), new DateTime(1971, 5, 13),
+            //        "Ростов-на-дону", "8 912 345 67 01", "murovey_apostol01", "IYyGyUbyigHG");
+            //    Client b = new Client(new FulName("Агелера", "Кристина", "Алексеевна"), new DateTime(1975, 3, 3), 
+            //        "Ростов-на-дону", "89126456766", "agata_kristy", "jve jvne");
 
-                int temp = a.IsAPaer(b);
+            //    a.Show();
+            //    b.Show();
 
-                string str = (temp <= 5) ? "Не подходят": 
-                    (temp <= 9) ? "Подходят, но слабо":
-                    (temp <= 14) ? "Подходят, класическая пара":
-                    "Подходят, стоит задуматься о браке";
+            //    int temp = a.IsAPaer(b);
 
-                Console.WriteLine(str);
+            //    string str = (temp <= 5) ? "Не подходят": 
+            //        (temp <= 9) ? "Подходят, но слабо":
+            //        (temp <= 14) ? "Подходят, класическая пара":
+            //        "Подходят, стоит задуматься о браке";
+
+            //    Console.WriteLine(str);
 
             }
             catch (Exception e)

@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace laba_5
@@ -22,7 +23,9 @@ namespace laba_5
 
         public bool IsMyPassword(string password)
         {
-            return _password == HachPassword(password);
+            var temp = HachPassword(password);
+
+            return _password.SequenceEqual(temp);
         }
 
         private byte[] HachPassword(string password)

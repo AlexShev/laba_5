@@ -7,17 +7,17 @@
       <FileName>FulName.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="laba_5.Person" Collapsed="true">
+  <Class Name="laba_5.Client" Collapsed="true">
     <Position X="4.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ADAAEAAIBIAKAkAgoAAAiAAAAAAEAAAAAAAAAAAAAEA=</HashCode>
-      <FileName>Person.cs</FileName>
+      <HashCode>ADAAEAAIAIAKAkAgoAAAiAAAAAAEAAAAAAAAAIAAAEA=</HashCode>
+      <FileName>Client.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Program" Collapsed="true">
     <Position X="8.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,21 +38,21 @@
   <Class Name="laba_5.StandartView" Collapsed="true">
     <Position X="4.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIQAABAABAAAAAAAgEAQAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAIQAABAABAAAAAAAgEAQAAgAAAAAEAAAAAAAAAE=</HashCode>
       <FileName>StandartView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Human" Collapsed="true">
     <Position X="6.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAAAA=</HashCode>
+      <HashCode>ABQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAQIIAAAAA=</HashCode>
       <FileName>Human.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Admin" Collapsed="true">
     <Position X="8.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
       <FileName>Admin.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -2,7 +2,7 @@
 
 namespace laba_5
 {
-    class Person : Human
+    class Client : Human
     {
         private readonly FulName _myFulName;
 
@@ -18,7 +18,7 @@ namespace laba_5
 
         private readonly СompatibilityByName _myCompatibilityByName;
 
-        public Person(FulName myFulName, DateTime myBirthday, string myCity, string myPhoneNumber, string login, string password)
+        public Client(FulName myFulName, DateTime myBirthday, string myCity, string myPhoneNumber, string login, string password)
             :base(login, password)
         {
             // кривая проверка на age>=0
@@ -70,7 +70,7 @@ namespace laba_5
             }
         }
 
-        public int IsAPaer(in Person person)
+        public int IsAPaer(in Client person)
         {
             if (_mySex != person._mySex && _myCity == person._myCity)
             {
@@ -80,7 +80,7 @@ namespace laba_5
             return 0;
         }
 
-        public int IsAPaerWithoutSexAndLocalization(in Person person)
+        public int IsAPaerWithoutSexAndLocalization(in Client person)
         {
             int result = 0;
 
