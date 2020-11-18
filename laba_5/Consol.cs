@@ -116,7 +116,7 @@ namespace laba_5
 
         private static void AddHuman(DataBase dataBase, bool isAdmin = false)
         {
-            string[] temp = ReadLogAndPas();
+        //    string[] temp = ReadLogAndPas();
 
             if (isAdmin)
             {
@@ -124,7 +124,7 @@ namespace laba_5
             }
             else
             {
-                string[] temp2 = ReadClientInformation();
+          //      string[] temp2 = ReadClientInformation();
 
            //     dataBase.AddСlient(new Client(new FulName(temp2[0]), StandartView.ConverteStringToDate(temp2[1]), temp2[2], temp2[3], temp[0], temp[1]));
 
