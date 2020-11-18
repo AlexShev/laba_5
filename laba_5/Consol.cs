@@ -120,7 +120,7 @@ namespace laba_5
 
             if (isAdmin)
             {
-                dataBase.AddAdmin(new Admin(temp[0], temp[1]));
+           //     dataBase.AddAdmin(new Admin(temp[0], temp[1]));
             }
             else
             {
