@@ -2,106 +2,86 @@
 
 namespace laba_5
 {
-    class Client : Human
+    public class Client : Human
     {
-        private readonly FulName _myFulName;
+        public FulName MyFulName { get; }
 
-        private readonly DateTime _myBirthday;
+        public DateTime MyBirthday { get; }
 
-        private readonly string _myCity;
+        public Gender MySex { get; }
 
-        private readonly string _myPhoneNumber;
+        public string MyCity { get; }
 
-        private readonly char _mySex;
+        public string MyPhoneNumber { get; }
 
-        private readonly ZodiacSign _myZodiacSign;
+        public ZodiacSign MyZodiacSign { get; }
 
-        private readonly СompatibilityByName _myCompatibilityByName;
+        public СompatibilityByName MyCompatibilityByName { get; }
 
-        public Client(FulName myFulName, DateTime myBirthday, string myCity, string myPhoneNumber, string login, string password)
-            :base(login, password)
-        {
-            // кривая проверка на age>=0
-            // может стоит установить ограничение 18?
-            _ = MyAge;
-
-            _myFulName = myFulName;
-
-            _myBirthday = myBirthday;
-
-            _myCity = StandartView.ConverteToStandartString(myCity);
-
-            _myPhoneNumber = StandartView.ConverteToStandartPhoneNumber(myPhoneNumber);
-
-            _mySex = FulName.Sex(_myFulName);
-
-            _myZodiacSign = new ZodiacSign(myBirthday);
-
-            _myCompatibilityByName = new СompatibilityByName(_myFulName.FerstName);
-        }
-
-        public FulName MyFulName { get { return _myFulName; } }
-
-        public DateTime MyBirthday { get { return _myBirthday; } }
-
-        public char MySex { get { return _mySex; } }
-
-        public string MyCity { get { return _myCity; } }
-
-        public string MyPhoneNumber { get { return _myPhoneNumber; } }
-
-        public string MyZodiacSign { get { return _myZodiacSign.MyZodiacSign.ToString(); } }
-
-        // не поле, так как оно должно меняться
         public int MyAge
         {
             get
             {
-                int age = DateTime.Now.Year - _myBirthday.Year;
+                // не успеваю переделать
+                int age = DateTime.Now.Year - MyBirthday.Year;
 
-                if (DateTime.Now.Month < _myBirthday.Month ||
-                   (DateTime.Now.Month == _myBirthday.Month &&
-                   DateTime.Now.Day < _myBirthday.Day))
+                if (DateTime.Now.Month < MyBirthday.Month || (DateTime.Now.Month == MyBirthday.Month && DateTime.Now.Day < MyBirthday.Day))
+                {
                     age--;
+                }
 
-                if (age < 0) throw new System.Exception("Человек ещё не родился");
+                if (age < 0)
+                {
+                    throw new System.Exception("Человек ещё не родился");
+                }
 
                 return age;
             }
         }
 
-        public int IsAPaer(in Client person)
+        public Client(string login, string password, string myFulName, string sex, string myBirthday, string myCity, string myPhoneNumber)
+            : base(login, password)
         {
-            if (_mySex != person._mySex && _myCity == person._myCity)
-            {
-                return IsAPaerWithoutSexAndLocalization(person);
-            }
+            MyFulName = new FulName(myFulName);
 
-            return 0;
+            MyBirthday = StandartView.ConverteStringToDate(myBirthday);
+
+            MyCity = StandartView.ConverteToStandartString(myCity);
+
+            MyPhoneNumber = StandartView.ConverteToStandartPhoneNumber(myPhoneNumber);
+
+            MySex = new Gender(sex);
+
+            MyZodiacSign = new ZodiacSign(MyBirthday);
+
+            MyCompatibilityByName = new СompatibilityByName(MyFulName.FirstName);
         }
 
-        public int IsAPaerWithoutSexAndLocalization(in Client person)
+        public Client(string[] str) : this(str[0], str[1], str[2], str[3], str[4], str[5], str[6]) { }
+
+        public int ScoreIsPaer(in Client person)
         {
-            int result = 0;
+            return (MySex != person.MySex && MyCity == person.MyCity) ? ScoreIsPaerWithoutSexAndLocalization(person) : 0;
+        }
 
-            // спорное ограничение, но так как это не живое общение, то человек просто сам отфильтрует по возрасту
-            int maxAgeDif = (MyAge >= 23) ? 5 : (MyAge <= 18) ? 1 : MyAge - 18;
-
-            if (Math.Abs(MyAge - person.MyAge) > maxAgeDif)
+        public int ScoreIsPaerWithoutSexAndLocalization(in Client person, int maxAgeDiferent = 5)
+        {
+            if (Math.Abs(MyAge - person.MyAge) > maxAgeDiferent)
+            {
                 return 0;
+            }
 
-            result += _myCompatibilityByName.IsAPaer(person._myCompatibilityByName);
+            int result = MyCompatibilityByName.IsAPaer(person.MyCompatibilityByName);
 
-            result += _myZodiacSign.IsAPaer(person._myZodiacSign);
-            
+            result += MyZodiacSign.IsAPaer(person.MyZodiacSign);
+
             return result;
         }
 
-        public override bool IsAvailable() { return false; }
-
+        // clear ot cuda
         public void Show()
         {
-            Console.WriteLine($"ФИО {MyFulName} пол {MySex} родился {MyBirthday.ToShortDateString()} возраст {MyAge} знак задиака {MyZodiacSign}");
+            Console.WriteLine($"ФИО {MyFulName} пол {MySex} родился {MyBirthday.ToShortDateString()} возраст {MyAge} знак задиака {MyZodiacSign.ToString()}");
         }
     }
 }

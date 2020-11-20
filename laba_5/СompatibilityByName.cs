@@ -2,9 +2,9 @@
 
 namespace laba_5
 {
-    class СompatibilityByName
+    public class СompatibilityByName
     {
-        // очень криво, но в голову ничего лучше не пришло
+        // проблема с английскими букавами
         private static readonly Dictionary<int, SortedSet<char>> _map
             = new Dictionary<int, SortedSet<char>>
             {
@@ -19,7 +19,7 @@ namespace laba_5
                 {9, new SortedSet<char> {'з', 'р','щ'} },
             };
 
-        private static readonly int[,] _arr = 
+        private static readonly int[,] _arr =
         {
             {5,8,3,8,3,9,7,7,9},
             {8,3,7,5,4,6,6,8,5},
@@ -32,8 +32,7 @@ namespace laba_5
             {9,5,6,8,8,5,9,5,6}
         };
 
-        private readonly int _myNamber;
-        public int MyNamber { get { return _myNamber; } }
+        public int MyNamber { get; }
 
         public СompatibilityByName(in string name)
         {
@@ -44,20 +43,24 @@ namespace laba_5
                 {
                     bool tempBool = _map[i].Contains(char.ToLower(c));
                     temp += tempBool ? i : 0;
-                    if (tempBool) break;
+                    if (tempBool)
+                    {
+                        break;
+                    }
                 }
             }
-            _myNamber = DigitsSum(temp);
+            MyNamber = DigitsSum(temp);
         }
 
-        public int IsAPaer(in СompatibilityByName person)
-        {
-            return _arr[_myNamber-1, person._myNamber-1];
-        }
+        public int IsAPaer(in СompatibilityByName person) => _arr[MyNamber - 1, person.MyNamber - 1];
 
         private static int DigitsSum(int number)
         {
-            if (number == 0) return 0;
+            if (number == 0)
+            {
+                return 0;
+            }
+
             return number % 10 + DigitsSum(number / 10);
         }
     }

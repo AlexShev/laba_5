@@ -2,9 +2,9 @@
 
 namespace laba_5
 {
-    class ZodiacSign
+    public class ZodiacSign
     {
-        public enum zodiacSign
+        public enum ZodiacSigns
         {
             aries,
             taurus,
@@ -20,51 +20,80 @@ namespace laba_5
             pisces,
         }
 
-        private readonly zodiacSign _myZodiacSign;
-
-        public zodiacSign MyZodiacSign { get { return _myZodiacSign; } }
+        public ZodiacSigns MyZodiacSign { get; }
 
         public ZodiacSign(in DateTime birthday)
         {
             int year = birthday.Year;
             if ((new DateTime(year, 12, 22) <= birthday) || (birthday <= new DateTime(year, 1, 19)))
-                _myZodiacSign = zodiacSign.aquarius;
+            {
+                MyZodiacSign = ZodiacSigns.aquarius;
+            }
             else if (birthday <= new DateTime(year, 2, 18))
-                _myZodiacSign = zodiacSign.aquarius;
+            {
+                MyZodiacSign = ZodiacSigns.aquarius;
+            }
             else if (birthday <= new DateTime(year, 3, 21))
-                _myZodiacSign = zodiacSign.pisces;
+            {
+                MyZodiacSign = ZodiacSigns.pisces;
+            }
             else if (birthday <= new DateTime(year, 4, 19))
-                _myZodiacSign = zodiacSign.aries;
+            {
+                MyZodiacSign = ZodiacSigns.aries;
+            }
             else if (birthday <= new DateTime(year, 5, 20))
-                _myZodiacSign = zodiacSign.taurus;
-            else if(birthday <= new DateTime(year, 6, 20))
-                _myZodiacSign = zodiacSign.twins;
+            {
+                MyZodiacSign = ZodiacSigns.taurus;
+            }
+            else if (birthday <= new DateTime(year, 6, 20))
+            {
+                MyZodiacSign = ZodiacSigns.twins;
+            }
             else if (birthday <= new DateTime(year, 7, 22))
-                _myZodiacSign = zodiacSign.cancer;
+            {
+                MyZodiacSign = ZodiacSigns.cancer;
+            }
             else if (birthday <= new DateTime(year, 8, 22))
-                _myZodiacSign = zodiacSign.leo;
-            else if (birthday <= new DateTime(year, 9 ,22))
-                _myZodiacSign = zodiacSign.virgo;
+            {
+                MyZodiacSign = ZodiacSigns.leo;
+            }
+            else if (birthday <= new DateTime(year, 9, 22))
+            {
+                MyZodiacSign = ZodiacSigns.virgo;
+            }
             else if (birthday <= new DateTime(year, 10, 22))
-                _myZodiacSign = zodiacSign.libra;
+            {
+                MyZodiacSign = ZodiacSigns.libra;
+            }
             else if (birthday <= new DateTime(year, 11, 21))
-                _myZodiacSign = zodiacSign.scorpio;
+            {
+                MyZodiacSign = ZodiacSigns.scorpio;
+            }
             else if (birthday <= new DateTime(year, 12, 21))
-                _myZodiacSign = zodiacSign.sagittarius;
+            {
+                MyZodiacSign = ZodiacSigns.sagittarius;
+            }
         }
 
         public int IsAPaer(in ZodiacSign zodiacSignPaer)
         {
-            int temp = Math.Abs(_myZodiacSign - zodiacSignPaer._myZodiacSign);
+            int temp = Math.Abs(MyZodiacSign - zodiacSignPaer.MyZodiacSign);
 
             temp = (temp <= 6) ? temp : 12 - temp;
 
             if (temp == 0 || temp == 6)
+            {
                 return 3;
+            }
             else if (temp == 2)
+            {
                 return 6;
+            }
             else if (temp == 4)
+            {
                 return 9;
+            }
+
             return 0;
         }
     }

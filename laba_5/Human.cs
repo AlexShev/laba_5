@@ -4,19 +4,17 @@ using System.Text;
 
 namespace laba_5
 {
-    abstract class Human
+    public abstract class Human
     {
-        private readonly string _login;
-
         private readonly byte[] _password;
 
-        public string Login { get{ return _login; } }
+        public string Login { get; }
 
         public Human(string login, string password)
         {
             StandartView.LoginEr(login);
 
-            _login = login;
+            Login = login;
 
             _password = HachPassword(password);
         }
@@ -37,6 +35,15 @@ namespace laba_5
             return new MD5CryptoServiceProvider().ComputeHash(tmpSource);
         }
 
-        public abstract bool IsAvailable();
+        public static bool operator ==(Human c1, Human c2) => c1.Login == c2.Login && c1._password.SequenceEqual(c2._password);
+
+        public static bool operator !=(Human c1, Human c2) => !(c1 == c2);
+
+        public override bool Equals(object obj)
+        {
+            var c2 = obj as Human;
+
+            return this == c2;
+        }
     }
 }

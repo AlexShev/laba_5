@@ -1,59 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="laba_5.FulName" Collapsed="true">
-    <Position X="4.5" Y="3.5" Width="1.5" />
+    <Position X="5.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAgAAAAABAAEAAAAAAAABAAAABAAABBAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEgAAAAAAAAEAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>FulName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Client" Collapsed="true">
-    <Position X="4.5" Y="2.5" Width="1.5" />
+    <Position X="4.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ADAAEAAIAIAKAkAgoAAAiAAAAAAEAAAAAAAAAIAAAEA=</HashCode>
+      <HashCode>ADAAAAAKAIAAAgAAAAAACAAAAAAEBEAAAAAAAAAAAEA=</HashCode>
       <FileName>Client.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Program" Collapsed="true">
-    <Position X="8.75" Y="1" Width="1.5" />
+    <Position X="9.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.ZodiacSign" Collapsed="true">
-    <Position X="2.75" Y="3.5" Width="1.5" />
+    <Position X="3.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ZodiacSign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.СompatibilityByName" Collapsed="true">
-    <Position X="6.25" Y="3.5" Width="1.5" />
+    <Position X="7" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAAAMAAAAABAABAAAAAAAEAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAAMAAAAAAAABAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>СompatibilityByName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.StandartView" Collapsed="true">
-    <Position X="4.5" Y="1" Width="1.5" />
+    <Position X="4.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIQAABAABAAAAAAAgEAQAAgAAAAAEAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAIQAABACBAAAAAAAgEAQAAgAAAAAMAAAAAAAAAE=</HashCode>
       <FileName>StandartView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Human" Collapsed="true">
-    <Position X="6.25" Y="1" Width="1.5" />
+    <Position X="6.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAQIIAAAAA=</HashCode>
+      <HashCode>ABQAAAAAAAAEAAAAgAAAAAAAAAAAAAAAAAAQAAAAAiA=</HashCode>
       <FileName>Human.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Admin" Collapsed="true">
-    <Position X="8.25" Y="2.5" Width="1.5" />
+    <Position X="8.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.Gender" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAEEAAAAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <FileName>Gender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.ConsolIneractor" Collapsed="true">
+    <Position X="7.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABBAEAYQAAEAEAQAAQAAAIAAABEAADAAAAAAI=</HashCode>
+      <FileName>Consol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.DataBase" Collapsed="true">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQEAAAAAAIAQAABAAEAIAgAAABEBDAAAg=</HashCode>
+      <FileName>DataBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="10" />

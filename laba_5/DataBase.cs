@@ -1,119 +1,126 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace laba_5
 {
-    class DataBase
+    public class DataBase
     {
         private readonly SortedDictionary<string, Admin> _admins = new SortedDictionary<string, Admin>
         { ["AlexShev"] = new Admin("AlexShev", "0123") };
 
-        private readonly SortedDictionary<string, Client> _clients;
+        private readonly SortedDictionary<string, Client> _clients = new SortedDictionary<string, Client>();
 
-        private readonly SortedDictionary<string, Tuple<List<Client>, List<Client>>> _sortedClients;
+        private readonly SortedDictionary<string, ClientTonw> _sortedClients = new SortedDictionary<string, ClientTonw>();
+
+        private class ClientTonw
+        {
+            private readonly List<Client> _female = new List<Client>();
+
+            private readonly List<Client> _masculine = new List<Client>();
+
+            public List<Client> ChoesPartTounBySex(Client client, bool oppositeSex = false)
+            {
+                bool isMasculine = client.MySex.MySex == Gender.Sex.masculine;
+
+                return (oppositeSex) ? (isMasculine) ? _female : _masculine : (isMasculine) ? _masculine : _female;
+            }
+        }
+
+        private List<Client> ChoesToun(Client client, bool oppositeSex = false)
+        {
+            if (!_sortedClients.ContainsKey(client.MyCity))
+            {
+                _sortedClients.Add(client.MyCity, new ClientTonw());
+            }
+
+            return _sortedClients[client.MyCity].ChoesPartTounBySex(client, oppositeSex);
+        }
 
         // не смог объеденить - ругается что не может преобразовать базовый класс в производные
         public void AddAdmin(Admin admin)
         {
-             _admins.Add(admin.Login, admin);   
+            _admins.Add(admin.Login, admin);
         }
 
         public void AddСlient(Client client)
         {
-            if (client.MySex == 'Ж' && client.MySex == 'М') throw new Exception("Не определённый пол");
-
             _clients.Add(client.Login, client);
 
-            ChoesItem(client).Add(client);
+            ChoesToun(client).Add(client);
         }
 
-        public bool IsAdmin(Admin admin)
-        {
-            return _admins.ContainsValue(admin);
-        }
+        public bool IsFreeLoginClients(string login) => !(_clients.ContainsKey(login));
 
-        public bool IsAdmin(string login, string password)
-        {
-            return _admins.ContainsKey(login) ? (_admins[login].IsMyPassword(password)) : false;
-        }
+        public bool IsFreeLoginAdmins(string login) => !(_admins.ContainsKey(login));
 
-        public bool IsClient(Client client)
-        {
-            return _clients.ContainsValue(client);
-        }
+        public bool IsMyAdmin(Admin admin) => _admins.ContainsValue(admin);
 
-        public bool IsClient(string login, string password)
-        {
-            return _clients.ContainsKey(login) ? (_clients[login].IsMyPassword(password)) : false;
-        }
+        public bool IsMyClient(string[] loginPassword)
+            => _clients.ContainsKey(loginPassword[0]) ? _clients[loginPassword[0]].IsMyPassword(loginPassword[1]) : false;
 
-        public SortedDictionary<int, List<Client>> FindPiars(Client client)
+        public Client GetClient(string[] loginPassword)
+            => (IsMyClient(loginPassword)) ? _clients[loginPassword[0]] : throw new Exception("Такого пользователя нет в базе данных");
+
+        // бунтовал, что не может привести к этому виду, надеюсь правильно сделал
+        public IOrderedEnumerable<KeyValuePair<int, List<Client>>> FindPiars(string[] loginPassword, int maxAgeDif = 5)
         {
             var result = new SortedDictionary<int, List<Client>>();
-       
-            // я не понял, как сделать по убыванию очков
-            foreach (var c in ChoesItem(client))
-            {
-                int tempScore = client.IsAPaerWithoutSexAndLocalization(c);
 
-                if (tempScore > 3) result[tempScore].Add(c);
+            Client client = GetClient(loginPassword);
+
+            foreach (var c in ChoesToun(client, true))
+            {
+                int tempScore = client.ScoreIsPaerWithoutSexAndLocalization(c, maxAgeDif);
+
+                if (tempScore > 3)
+                {
+                    if (!result.ContainsKey(tempScore))
+                    {
+                        result.Add(tempScore, new List<Client>());
+                    }
+
+                    result[tempScore].Add(c);
+                }
             }
 
-            // как я понимаю я делю по категориям по баллам, в списке они по добавлению,
-            // значит преподчтение тем, кто юзает дольше
-            return result;
+            return result.OrderByDescending(kvp => kvp.Key);
         }
 
-        public void DeleteAdmin(Admin admin, string password)
+        public void DeleteAdmin(Admin admin)
         {
-            if (admin.IsMyPassword(password))
-
+            if (IsMyAdmin(admin))
+            {
                 _admins.Remove(admin.Login);
-
-            else
-                throw new Exception("Вы ввели не тот пароль");
-        }
-
-        public void DeleteClientByClient(Client client, string password)
-        {
-            if (client.IsMyPassword(password))
-            {
-                DeleteClient(client);
             }
             else
-                throw new Exception("Вы ввели не тот пароль");
-        }
-
-        public void DeleteClientByAdmin(Admin admin, Client client, string passwordClient)
-        {
-            if (admin.IsMyPassword(passwordClient))
             {
-                DeleteClient(client);
+                throw new Exception("Такого админа нет или неправильный пароль");
             }
-            else
-                throw new Exception("Вы ввели не тот пароль");
         }
 
-        public void DeleteClientByAdmin(Admin admin, string passwordAdmin, string loginClient)
+        public void DeleteClientByClient(string[] loginPassword)
         {
-            if (admin.IsMyPassword(passwordAdmin))
+            DeleteClient(GetClient(loginPassword));
+        }
+
+        public void DeleteClientByAdmin(Admin admin, string loginClient)
+        {
+            if (IsMyAdmin(admin))
             {
                 DeleteClient(_clients[loginClient]);
             }
             else
-                throw new Exception("Вы ввели не тот пароль");
+            {
+                throw new Exception("Вы не админ");
+            }
         }
 
         private void DeleteClient(Client client)
         {
             _clients.Remove(client.Login);
 
-            ChoesItem(client).Remove(client);
-        }
-
-        private List<Client> ChoesItem(in Client client)
-        {
-            return (client.MySex == 'М') ? _sortedClients[client.MyCity].Item2 : _sortedClients[client.MyCity].Item1;
+            ChoesToun(client).Remove(client);
         }
     }
 }
