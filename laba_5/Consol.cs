@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace laba_5
 {
@@ -6,6 +7,87 @@ namespace laba_5
     // нужен для демнстрации логики
     public class ConsolIneractor
     {
+        public static void Run()
+        {
+            var dataBase = new DataBase();
+
+            bool condition = true;
+
+            while (condition)
+            {
+                Menu();
+
+                switch (ReadComend())
+                {
+                    case ('1'): RunForClient(dataBase); break;
+                    case ('2'): RunForNewClient(dataBase); break;
+                    case ('3'): RunForAdmin(dataBase); break;
+                    case ('0'): Console.WriteLine("\nДо свидания"); condition = false; break;
+                    default: Console.WriteLine("\nТакой команды нет"); break;
+                }
+            }
+        }
+
+        private static void Menu()
+        {
+            Console.WriteLine("1: Войти");
+            Console.WriteLine("2: Зарегестрироваться");
+            Console.WriteLine("3: Войти как администратор");
+            Console.WriteLine("0: Завершение работы");
+        }
+
+        private static char ReadComend()
+        {
+            Console.Write(">>");
+
+            char comand = Console.ReadKey().KeyChar;
+
+            Console.WriteLine('\n');
+
+            return comand;
+        }
+
+        private static void RunForClient(DataBase dataBase, bool isNewClient = false)
+        {
+            string[] temp = Identification();
+
+            if (dataBase.IsMyClient(temp))
+            {
+                bool condition = true;
+
+                while (condition)
+                {
+                    try
+                    {
+                        MenuForClient();
+
+                        switch (ReadComend())
+                        {
+                            case ('1'): FindPaer(dataBase, temp); break;
+                            case ('2'): Console.WriteLine("\nСпасибо, нам это очень важно"); break;
+                            case ('3'): DeleteClient(dataBase, temp); condition = false; break;
+                            case ('0'): Console.WriteLine("\nВы вышли из аккаунта администратора"); condition = false; break;
+                            default: Console.WriteLine("\nТакой команды нет"); break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                }
+            }
+            else if (dataBase.IsFreeLoginClients(temp[0]))
+            {
+                Console.WriteLine("\nТакого пользователя пока нет, зарегестрируйтесь\n");
+            }
+            else
+            {
+                Console.WriteLine("\nВы ошиблись при вводе пароля\n");
+            }
+        }
+
+        private static string[] Identification() => new string[2] { ReadLogin(), ReadPassword() };
+
         private static string ReadLogin()
         {
             Console.WriteLine("Введите логин:");
@@ -28,7 +110,58 @@ namespace laba_5
             return temp;
         }
 
-        private static string[] Identification() => new string[2] { ReadLogin(), ReadPassword() };
+        private static void MenuForClient()
+        {
+            Console.WriteLine("1: Подобрать пару");
+            Console.WriteLine("2: Поощерить нашу работу");
+            Console.WriteLine("3: Удалить свой аккаунт");
+            Console.WriteLine("0: Выйти");
+        }
+
+        private static void FindPaer(DataBase dataBase, string[] person)
+        {
+            foreach (var c in dataBase.FindPiars(person, 5))
+            {
+                foreach (var c1 in c.Value)
+                {
+                    c1.Show();
+                }
+            }
+        }
+
+        private static void DeleteClient(DataBase dataBase, string[] loginPassword)
+        {
+            Console.WriteLine("Для подтверждения нажмите 1");
+
+            var temp = Console.ReadKey().Key;
+
+            if (temp == ConsoleKey.D1)
+            {
+                dataBase.DeleteClientByClient(loginPassword);
+
+                Console.WriteLine("\nСпасибо за использование нашей программы, надеемся, что мы Вам помогли подобрать пару\n");
+            }
+            else
+            {
+                Console.WriteLine("\nОтмена команды\n");
+            }
+        }
+
+        private static void RunForNewClient(DataBase dataBase)
+        {
+
+        }
+
+        private static string[] AddClient(DataBase dataBase)
+        {
+            Console.WriteLine("Введите необходимые данные");
+
+            string[] temp = ReadClientInformation(dataBase);
+
+            dataBase.AddСlient(new Client(temp));
+
+            return temp[0..2];
+        }
 
         private static string[] ReadLogAndPas(DataBase dataBase)
         {
@@ -40,7 +173,11 @@ namespace laba_5
             {
                 temp[0] = ReadLogin();
 
-                if (dataBase.IsFreeLoginAdmins(temp[0]))
+                if (!StandartView.IsLogin(temp[0]))
+                {
+                    Console.WriteLine("Извините, это не может быть логином");
+                }
+                else if (dataBase.IsFreeLoginAdmins(temp[0]))
                 {
                     break;
                 }
@@ -79,16 +216,29 @@ namespace laba_5
             result[0] = temp[0]; result[1] = temp[1];
 
             Console.WriteLine("\nВведите ФИО:");
-            result[2] = Console.ReadLine();
+            result[2] = ReadFullName();
 
-            Console.WriteLine("\nПол:");
-            result[3] = Console.ReadLine();
+            while (true)
+            {
+                Console.WriteLine("\nПол:");
+
+                result[3] = StandartView.ConverteToStandartWord(Console.ReadLine());
+
+                if (Gender.IsMyGender(result[3], true))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Вы вели что-то не так, попробуйте ещё раз\n");
+                }
+            }
 
             Console.WriteLine("\nДата рождения:");
             result[4] = Console.ReadLine();
 
             Console.WriteLine("\nГород проживания:");
-            result[5] = Console.ReadLine();
+            result[5] = SetString(Console.ReadLine());
 
             Console.WriteLine("\nНомер телефона:");
             result[6] = Console.ReadLine();
@@ -98,13 +248,70 @@ namespace laba_5
             return result;
         }
 
-        private static void MenuForClient()
+        private static string SetString(string str)
         {
-            Console.WriteLine("1: Подобрать пару");
-            Console.WriteLine("2: Поощерить нашу работу");
-            Console.WriteLine("3: Удалить свой аккаунт");
-            Console.WriteLine("0: Выйти");
+            try
+            {
+                string res = StandartView.ConverteToStandartString(str);
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\nОшибка при вводе " + ex.Message);
+
+                throw;
+            }
+
         }
+
+        private static string ReadFullName()
+        {
+            string res = string.Empty;
+
+            while (true)
+            {
+                try
+                {
+                    string[] strArrey;
+
+                    while (true)
+                    {
+                        strArrey = StandartView.ToStringArray(Console.ReadLine());
+
+                        if (strArrey.Length == 3)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы что-то забыли, должно быть три параметра - фамилия, имя, отчество\n");
+
+                            Console.WriteLine("Если у Вас составное имя/фамилия - пишите через тире\n");
+
+                            Console.WriteLine("Введите данные повторно\n");
+                        }
+                    }
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        res += SetString(strArrey[i]) + ' ';
+                    }
+
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\nВведите данные повторно\n");
+
+                    res = null;
+                }
+            }
+            return res;
+
+        }
+
+
 
         private static void MenuForAdmin()
         {
@@ -115,13 +322,7 @@ namespace laba_5
             Console.WriteLine("0: Выйти");
         }
 
-        private static void Menu()
-        {
-            Console.WriteLine("1: Войти");
-            Console.WriteLine("2: Зарегестрироваться");
-            Console.WriteLine("3: Войти как администратор");
-            Console.WriteLine("0: Завершение работы");
-        }
+
 
         private static void RunForAdmin(DataBase dataBase)
         {
@@ -202,103 +403,18 @@ namespace laba_5
             }
         }
 
-        private static void AddClient(DataBase dataBase)
-        {
-            Console.WriteLine("Введите необходимые данные");
-
-            dataBase.AddСlient(new Client(ReadClientInformation(dataBase)));
-        }
 
 
-        private static void DeleteClient(DataBase dataBase, string[] loginPassword)
-        {
-            Console.WriteLine("Введите необходимые данные");
 
-            dataBase.DeleteClientByClient(loginPassword);
 
-        }
 
-        private static void RunForClient(DataBase dataBase)
-        {
-            string[] temp = Identification();
 
-            if (dataBase.IsMyClient(temp))
-            {
-                bool condition = true;
 
-                while (condition)
-                {
-                    try
-                    {
-                        MenuForClient();
 
-                        switch (ReadComend())
-                        {
-                            case ('1'): FindPaer(dataBase, temp); break;
-                            case ('2'): Console.WriteLine("\nСпасибо, нам это очень важно"); break;
-                            case ('3'): DeleteClient(dataBase, temp); condition = false; break;
-                            case ('0'): Console.WriteLine("\nВы вышли из аккаунта администратора"); condition = false; break;
-                            default: Console.WriteLine("\nТакой команды нет"); break;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                }
-            }
-            else if (dataBase.IsFreeLoginClients(temp[0]))
-            {
-                Console.WriteLine("\nТакого пользователя пока нет, зарегестрируйтесь\n");
-            }
-            else
-            {
-                Console.WriteLine("\nВы ошиблись при вводе пароля\n");
-            }
-        }
 
-        private static void FindPaer(DataBase dataBase, string[] person)
-        {
-            foreach (var c in dataBase.FindPiars(person, 5))
-            {
-                foreach (var c1 in c.Value)
-                {
-                    c1.Show();
-                }
-            }
-        }
 
-        public static void Run()
-        {
-            var dataBase = new DataBase();
 
-            bool condition = true;
 
-            while (condition)
-            {
-                Menu();
-
-                switch (ReadComend())
-                {
-                    case ('1'): RunForClient(dataBase); break;
-                    case ('2'): AddClient(dataBase); break;
-                    case ('3'): RunForAdmin(dataBase); break;
-                    case ('0'): Console.WriteLine("\nДо свидания"); condition = false; break;
-                    default: Console.WriteLine("\nТакой команды нет"); break;
-                }
-            }
-        }
-
-        private static char ReadComend()
-        {
-            Console.Write(">>");
-
-            char comand = Console.ReadKey().KeyChar;
-
-            Console.WriteLine('\n');
-
-            return comand;
-        }
 
     }
 }

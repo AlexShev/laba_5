@@ -10,30 +10,29 @@ namespace laba_5
 
         public string SecondName { get; }
 
-        public FulName(string secondName, string firstName, string midlName)
+        public FulName(string secondName, string firstName, string midlName, bool isStandartView = false)
         {
-            FirstName = StandartView.ConverteToStandartString(firstName);
+            FirstName = (isStandartView) ? firstName: StandartView.ConverteToStandartString(firstName);
 
-            MidlName = StandartView.ConverteToStandartString(midlName);
+            MidlName = (isStandartView) ? midlName: StandartView.ConverteToStandartString(midlName);
 
-            SecondName = StandartView.ConverteToStandartString(secondName);
+            SecondName = (isStandartView) ? secondName : StandartView.ConverteToStandartString(secondName);
         }
 
-        public FulName(string fulName)
+        public FulName(string fulName, bool isStandartView = false)
         {
-            string[] sfm = fulName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] sfm = StandartView.ToStringArray(fulName);
 
             if (sfm.Length > 3)
             {
                 throw new System.Exception($"{fulName} нарушение формата ввода");
             }
 
-            // хочется использовать конструктор повыше
-            FirstName = StandartView.ConverteToStandartString(sfm[1]);
+            FirstName = (isStandartView) ? sfm[1] : StandartView.ConverteToStandartString(sfm[1]);
 
-            MidlName = StandartView.ConverteToStandartString(sfm[2]);
+            MidlName = (isStandartView) ? sfm[2] : StandartView.ConverteToStandartString(sfm[2]);
 
-            SecondName = StandartView.ConverteToStandartString(sfm[0]);
+            SecondName = (isStandartView) ? sfm[0] : StandartView.ConverteToStandartString(sfm[0]);
         }
 
         public override string ToString() => $"{SecondName} {FirstName} {MidlName}";

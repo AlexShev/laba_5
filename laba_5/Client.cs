@@ -22,7 +22,7 @@ namespace laba_5
         {
             get
             {
-                // не успеваю переделать
+                // там оказывается ещё сложнее из-за 29 февраля
                 int age = DateTime.Now.Year - MyBirthday.Year;
 
                 if (DateTime.Now.Month < MyBirthday.Month || (DateTime.Now.Month == MyBirthday.Month && DateTime.Now.Day < MyBirthday.Day))
@@ -39,30 +39,27 @@ namespace laba_5
             }
         }
 
-        public Client(string login, string password, string myFulName, string sex, string myBirthday, string myCity, string myPhoneNumber)
-            : base(login, password)
+        public Client(string login, string password, string myFulName, string sex, string myBirthday,
+            string myCity, string myPhoneNumber, bool isStandartView = false) : base(login, password)
         {
-            MyFulName = new FulName(myFulName);
+            MyFulName = new FulName(myFulName, isStandartView);
 
             MyBirthday = StandartView.ConverteStringToDate(myBirthday);
 
-            MyCity = StandartView.ConverteToStandartString(myCity);
+            MyCity = (isStandartView) ? myCity : StandartView.ConverteToStandartString(myCity);
 
-            MyPhoneNumber = StandartView.ConverteToStandartPhoneNumber(myPhoneNumber);
+            MyPhoneNumber = (isStandartView) ? myPhoneNumber : StandartView.ConverteToStandartPhoneNumber(myPhoneNumber);
 
-            MySex = new Gender(sex);
+            MySex = new Gender(sex, isStandartView);
 
             MyZodiacSign = new ZodiacSign(MyBirthday);
 
             MyCompatibilityByName = new СompatibilityByName(MyFulName.FirstName);
-        }
+        }     
 
-        public Client(string[] str) : this(str[0], str[1], str[2], str[3], str[4], str[5], str[6]) { }
+        public Client(string[] str, bool isStandartView = false) : this(str[0], str[1], str[2], str[3], str[4], str[5], str[6], isStandartView) { }
 
-        public int ScoreIsPaer(in Client person)
-        {
-            return (MySex != person.MySex && MyCity == person.MyCity) ? ScoreIsPaerWithoutSexAndLocalization(person) : 0;
-        }
+        public int ScoreIsPaer(in Client person) => (MySex != person.MySex && MyCity == person.MyCity) ? ScoreIsPaerWithoutSexAndLocalization(person) : 0;
 
         public int ScoreIsPaerWithoutSexAndLocalization(in Client person, int maxAgeDiferent = 5)
         {

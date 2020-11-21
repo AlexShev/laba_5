@@ -10,9 +10,9 @@ namespace laba_5
 
         public string Login { get; }
 
-        public Human(string login, string password)
+        public Human(string login, string password, bool isStandertView = false)
         {
-            StandartView.LoginEr(login);
+            if(isStandertView) StandartView.LoginEr(login);
 
             Login = login;
 
