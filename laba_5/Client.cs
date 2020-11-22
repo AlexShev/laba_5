@@ -40,7 +40,7 @@ namespace laba_5
         }
 
         public Client(string login, string password, string myFulName, string sex, string myBirthday,
-            string myCity, string myPhoneNumber, bool isStandartView = false) : base(login, password)
+            string myCity, string myPhoneNumber, bool isStandartView = false) : base(login, password, isStandartView)
         {
             MyFulName = new FulName(myFulName, isStandartView);
 

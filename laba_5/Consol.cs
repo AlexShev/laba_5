@@ -226,7 +226,7 @@ namespace laba_5
 
             var temp = ReadClientInformation(dataBase);
 
-            dataBase.AddСlient(new Client(temp));
+            dataBase.AddСlient(new Client(temp, true));
 
             return temp[0..2];
         }
