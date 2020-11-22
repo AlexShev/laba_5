@@ -26,7 +26,8 @@ namespace laba_5
             return _password.SequenceEqual(temp);
         }
 
-        private byte[] HachPassword(string password)
+		// он сказал сделать статическим
+        private static byte[] HachPassword(string password)
         {
             byte[] tmpSource;
 
@@ -45,5 +46,8 @@ namespace laba_5
 
             return this == c2;
         }
+
+        // не понимаю - зачем перегружать
+        public override int GetHashCode() => System.HashCode.Combine(Login + _password);
     }
 }

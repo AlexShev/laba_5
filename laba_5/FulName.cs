@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace laba_5
+﻿namespace laba_5
 {
     public class FulName
     {
@@ -21,7 +19,7 @@ namespace laba_5
 
         public FulName(string fulName, bool isStandartView = false)
         {
-            string[] sfm = StandartView.ToStringArray(fulName);
+            var sfm = StandartView.ToStringArray(fulName);
 
             if (sfm.Length > 3)
             {

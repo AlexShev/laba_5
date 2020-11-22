@@ -1,0 +1,211 @@
+# taganrog v1
+# You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+[*.cs]
+
+#Core editorconfig formatting - indentation
+
+#use hard tabs for indentation
+indent_style                                                             = tab
+
+#Formatting - new line options
+
+csharp_new_line_before_catch                                             = true
+csharp_new_line_before_else                                              = true
+csharp_new_line_before_finally                                           = true
+csharp_new_line_before_members_in_anonymous_types                        = true
+csharp_new_line_before_members_in_object_initializers                    = true
+csharp_new_line_before_open_brace                                        = all
+csharp_new_line_between_query_expression_clauses                         = true
+
+#Formatting - organize using options
+
+#sort System.* using directives alphabetically, and place them before other usings
+dotnet_sort_system_directives_first                                      = true
+
+#Formatting - spacing options
+
+#require a space before the colon for bases or interfaces in a type declaration
+csharp_space_after_colon_in_inheritance_clause                           = true
+#require a space before the colon for bases or interfaces in a type declaration
+csharp_space_before_colon_in_inheritance_clause                          = true
+#remove space within empty argument list parentheses
+csharp_space_between_method_call_empty_parameter_list_parentheses        = false
+#remove space between method call name and opening parenthesis
+csharp_space_between_method_call_name_and_opening_parenthesis            = false
+#do not place space characters after the opening parenthesis and before the closing parenthesis of a method call
+csharp_space_between_method_call_parameter_list_parentheses              = false
+#remove space within empty parameter list parentheses for a method declaration
+csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+#place a space character after the opening parenthesis and before the closing parenthesis of a method declaration parameter list.
+csharp_space_between_method_declaration_parameter_list_parentheses       = false
+
+csharp_space_around_binary_operators                                     = before_and_after
+csharp_space_between_parentheses                                         = false
+
+#Formatting - wrapping options
+
+#leave code block on single line
+csharp_preserve_single_line_blocks                                       = true
+
+#Style - expression bodied member options
+
+#prefer block bodies for constructors
+csharp_style_expression_bodied_constructors                              = false : silent
+#prefer block bodies for methods
+csharp_style_expression_bodied_methods                                   = false : silent
+#prefer block bodies for operators
+csharp_style_expression_bodied_operators                                 = false : silent
+#prefer expression-bodied members for properties
+csharp_style_expression_bodied_properties                                = when_on_single_line : warning
+csharp_style_expression_bodied_indexers                                  = when_on_single_line : warning
+csharp_style_expression_bodied_accessors                                 = when_on_single_line : warning
+
+
+#Style - expression level options
+
+#prefer out variables to be declared inline in the argument list of a method call when possible
+csharp_style_inlined_variable_declaration                                = true : suggestion
+
+#prefer the type name for member access expressions, instead of the language keyword
+dotnet_style_predefined_type_for_member_access                           = true : warning
+#prefer the type name for local variables, method parameters, and class members, instead of the language keyword
+dotnet_style_predefined_type_for_locals_parameters_members               = true : warning
+
+#Style - implicit and explicit types
+
+#prefer var is used to declare variables with built-in system types such as int
+csharp_style_var_for_built_in_types                                      = true : suggestion
+#prefer var when the type is already mentioned on the right-hand side of a declaration expression
+csharp_style_var_when_type_is_apparent                                   = true : warning
+
+
+#Style - language keyword and framework type options
+
+
+#Style - qualification options
+
+#prefer fields not to be prefaced with this. or Me. in Visual Basic
+dotnet_style_qualification_for_field                                     = false : warning
+#prefer methods not to be prefaced with this. or Me. in Visual Basic
+dotnet_style_qualification_for_method                                    = false : warning
+#prefer properties not to be prefaced with this. or Me. in Visual Basic
+dotnet_style_qualification_for_property                                  = false : warning
+
+dotnet_style_qualification_for_event                                     = false : warning
+
+
+# Custom
+
+dotnet_style_require_accessibility_modifiers                             = always : warning
+
+dotnet_style_prefer_is_null_check_over_reference_equality_method         = true : warning
+
+dotnet_style_readonly_field                                              = true : suggestion
+
+insert_final_newline                                                     = true
+tab_width                                                                = unset
+trim_trailing_whitespace                                                 = true
+max_line_length                                                          = 120
+
+csharp_style_pattern_local_over_anonymous_function                       = true : silent
+
+# ------------------------
+# Naming
+
+## Styles
+
+dotnet_naming_style.lowerCamelCase.capitalization                        = camel_case
+
+dotnet_naming_style.upperCamelCase.capitalization                        = pascal_case
+
+dotnet_naming_style.startsWithIUpper.capitalization                      = pascal_case
+dotnet_naming_style.startsWithIUpper.required_prefix                     = I
+
+dotnet_naming_style.startsWith_lower.capitalization                      = camel_case
+dotnet_naming_style.startsWith_lower.required_prefix                     = _
+
+dotnet_naming_style.startsWithTUpper.capitalization                      = pascal_case
+dotnet_naming_style.startsWithTUpper.required_prefix                     = T
+
+## Symbols
+
+dotnet_naming_symbols.type.applicable_kinds                              = enum,delegate,class,struct,interface
+dotnet_naming_symbols.type.applicable_accessibilities                    = *
+
+dotnet_naming_symbols.interface.applicable_kinds                         = interface
+dotnet_naming_symbols.interface.applicable_accessibilities               = *
+
+dotnet_naming_symbols.typeParam.applicable_kinds                         = type_parameter
+
+dotnet_naming_symbols.privateField.applicable_kinds                      = field,event
+dotnet_naming_symbols.privateField.applicable_accessibilities            = private,internal
+
+dotnet_naming_symbols.publicField.applicable_kinds                       = field,event
+dotnet_naming_symbols.publicField.applicable_accessibilities             = public,protected,protected_internal
+
+dotnet_naming_symbols.param.applicable_kinds                             = parameter
+
+dotnet_naming_symbols.variable.applicable_kinds                          = local
+
+dotnet_naming_symbols.localFunction.applicable_kinds                     = local_function
+
+dotnet_naming_symbols.nonFieldMember.applicable_kinds                    = property,method
+dotnet_naming_symbols.nonFieldMember.applicable_accessibilities          = *
+
+
+## Rules
+
+### Classes and structs
+
+dotnet_naming_rule.type.symbols                                          = type
+dotnet_naming_rule.type.style                                            = upperCamelCase
+dotnet_naming_rule.type.severity                                         = warning
+
+### Interfaces
+
+dotnet_naming_rule.interface.symbols                                     = interface
+dotnet_naming_rule.interface.style                                       = startsWithIUpper
+dotnet_naming_rule.interface.severity                                    = warning
+
+### Type params
+
+dotnet_naming_rule.typeParam.symbols                                     = typeParam
+dotnet_naming_rule.typeParam.style                                       = startsWithTUpper
+dotnet_naming_rule.typeParam.severity                                    = warning
+
+### Private and internal fields
+
+dotnet_naming_rule.privateField.symbols                                  = privateField
+dotnet_naming_rule.privateField.style                                    = startsWith_lower
+dotnet_naming_rule.privateField.severity                                 = warning
+
+### Public and protected fields
+
+dotnet_naming_rule.publicField.symbols                                   = publicField
+dotnet_naming_rule.publicField.style                                     = upperCamelCase
+dotnet_naming_rule.publicField.severity                                  = warning
+
+### Non-field members
+
+dotnet_naming_rule.nonFieldMember.symbols                                = nonFieldMember
+dotnet_naming_rule.nonFieldMember.style                                  = upperCamelCase
+dotnet_naming_rule.nonFieldMember.severity                               = warning
+
+### Params
+
+dotnet_naming_rule.param.symbols                                         = param
+dotnet_naming_rule.param.style                                           = lowerCamelCase
+dotnet_naming_rule.param.severity                                        = warning
+
+### Variables
+
+dotnet_naming_rule.variable.symbols                                      = variable
+dotnet_naming_rule.variable.style                                        = lowerCamelCase
+dotnet_naming_rule.variable.severity                                     = warning
+
+
+### Local functions
+
+#dotnet_naming_rule.variable.symbols                                      = local_function
+#dotnet_naming_rule.variable.style                                        = upperCamelCase
+#dotnet_naming_rule.variable.severity                                     = warning

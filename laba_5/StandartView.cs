@@ -9,14 +9,14 @@ namespace laba_5
         public static string[] ToStringArray(string str, char separator = ' ')
             => str.Split(new char[] { separator }, StringSplitOptions.RemoveEmptyEntries);
 
-        //  ох уж эти многосоставные имена да фамилии...
+        //  ох уж эти многосоставные имена да фамилии и города...
         public static string ConverteToStandartString(string str)
         {
-            string[] strArr = ToStringArray(str, '-');
+            var strArr = ToStringArray(str, '-');
 
             str = null;
 
-            for (int i = 0; i < strArr.Length; i++)
+            for (var i = 0; i < strArr.Length; i++)
             {
                 strArr[i] = ConverteToStandartWord(strArr[i]);
                 str += (strArr.Length - i == 1) ? strArr[i] : strArr[i] + '-';
@@ -28,8 +28,8 @@ namespace laba_5
         public static string ConverteToStandartWord(string word)
         {
             WordEr(word);
-
-            return word.Substring(0, 1).ToUpper() + word.Substring(1).ToLower();
+			// ну это его идея использовать перечисления
+            return word.Substring(0, 1).ToUpper() + word[1..].ToLower();
         }
 
         public static bool IsAWord(string word) => word.ToCharArray().All(char.IsLetter) && word.Length > 0;
@@ -44,16 +44,19 @@ namespace laba_5
 
         public static bool IsLogin(string login)
         {
-            foreach (char c in login)
-            {
-                if (!(char.IsLetterOrDigit(c) || c == '@' || c == '_' || c == '.'))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+			if(login.Length > 0)
+			{
+				foreach (var c in login)
+				{
+					if (!(char.IsLetterOrDigit(c) || c == '@' || c == '_' || c == '.'))
+					{
+						return false;
+					}
+				}
+				return true;
+			}
+			return false;
+		}
 
         public static void LoginEr(string login)
         {
@@ -84,14 +87,20 @@ namespace laba_5
 
         public static bool IsPhoneNumber(string phoneNumber)
         {
-            foreach (char c in phoneNumber)
+			var count = 0;
+
+            foreach (var c in phoneNumber)
             {
-                if (!(char.IsDigit(c) || c == '+' || c == '(' || c == '-' || c == ')' || c == ' '))
+                if (char.IsDigit(c))
+				{
+					count++;
+				}
+				else if (!(c == '+' || c == '(' || c == '-' || c == ')' || c == ' '))
                 {
                     return false;
                 }
             }
-            return true;
+			return count == 11;
         }
 
         public static void PhoneNumberEr(string phoneNumber)
@@ -104,28 +113,28 @@ namespace laba_5
 
         public static DateTime ConverteStringToDate(string str)
         {
-            string[] strArr = ToStringArray(str);
+            var strArr = ToStringArray(str);
 
-            string[] temp = new string[3];
+            var temp = new string[3];
 
             if (strArr.Length == 1)
             {
                 strArr = ToStringArray(str, '.');
             }
 
-            for (int i = 0; i < temp.Length; i++)
+            for (var i = 0; i < temp.Length; i++)
             {
                 temp[i] = strArr[i];
             }
 
-            int mounth = IsAWord(temp[1]) ? Mounth(temp[1]) : int.Parse(temp[1]);
+            var mounth = IsAWord(temp[1]) ? Mounth(temp[1]) : int.Parse(temp[1]);
 
             return new DateTime(int.Parse(temp[2]), mounth, int.Parse(temp[0]));
         }
 
         private static int Mounth(string mounth)
         {
-            int temp = _mounth[ConverteToStandartWord(mounth)];
+            var temp = _mounth[ConverteToStandartWord(mounth)];
 
             return (temp != 0) ? temp : throw new Exception("Такого месяца нет");
         }

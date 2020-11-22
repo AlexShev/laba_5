@@ -36,12 +36,12 @@ namespace laba_5
 
         public СompatibilityByName(in string name)
         {
-            int temp = 0;
+            var temp = 0;
             foreach (var c in name)
             {
-                for (int i = 1; i < 10; i++)
+                for (var i = 1; i < 10; i++)
                 {
-                    bool tempBool = _map[i].Contains(char.ToLower(c));
+                    var tempBool = _map[i].Contains(char.ToLower(c));
                     temp += tempBool ? i : 0;
                     if (tempBool)
                     {
@@ -60,7 +60,6 @@ namespace laba_5
             {
                 return 0;
             }
-
             return number % 10 + DigitsSum(number / 10);
         }
     }

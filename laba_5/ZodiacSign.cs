@@ -24,7 +24,8 @@ namespace laba_5
 
         public ZodiacSign(in DateTime birthday)
         {
-            int year = birthday.Year;
+            var year = birthday.Year;
+
             if ((new DateTime(year, 12, 22) <= birthday) || (birthday <= new DateTime(year, 1, 19)))
             {
                 MyZodiacSign = ZodiacSigns.aquarius;
@@ -77,7 +78,7 @@ namespace laba_5
 
         public int IsAPaer(in ZodiacSign zodiacSignPaer)
         {
-            int temp = Math.Abs(MyZodiacSign - zodiacSignPaer.MyZodiacSign);
+            var temp = Math.Abs(MyZodiacSign - zodiacSignPaer.MyZodiacSign);
 
             temp = (temp <= 6) ? temp : 12 - temp;
 
@@ -96,5 +97,7 @@ namespace laba_5
 
             return 0;
         }
-    }
+
+		public override string ToString() => MyZodiacSign.ToString();
+	}
 }

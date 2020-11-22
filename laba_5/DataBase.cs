@@ -21,7 +21,8 @@ namespace laba_5
 
             public List<Client> ChoesPartTounBySex(Client client, bool oppositeSex = false)
             {
-                bool isMasculine = client.MySex.MySex == Gender.Sex.masculine;
+				// стоит ли это выносить или нет
+                var isMasculine = client.MySex.MySex == Gender.Sex.masculine;
 
                 return (oppositeSex) ? (isMasculine) ? _female : _masculine : (isMasculine) ? _masculine : _female;
             }
@@ -57,7 +58,7 @@ namespace laba_5
         public bool IsMyAdmin(Admin admin) => _admins.ContainsValue(admin);
 
         public bool IsMyClient(string[] loginPassword)
-            => _clients.ContainsKey(loginPassword[0]) ? _clients[loginPassword[0]].IsMyPassword(loginPassword[1]) : false;
+            => _clients.ContainsKey(loginPassword[0]) && _clients[loginPassword[0]].IsMyPassword(loginPassword[1]);
 
         public Client GetClient(string[] loginPassword)
             => (IsMyClient(loginPassword)) ? _clients[loginPassword[0]] : throw new Exception("Такого пользователя нет в базе данных");
@@ -71,7 +72,7 @@ namespace laba_5
 
             foreach (var c in ChoesToun(client, true))
             {
-                int tempScore = client.ScoreIsPaerWithoutSexAndLocalization(c, maxAgeDif);
+                var tempScore = client.ScoreIsPaerWithoutSexAndLocalization(c, maxAgeDif);
 
                 if (tempScore > 3)
                 {
@@ -122,5 +123,20 @@ namespace laba_5
 
             ChoesToun(client).Remove(client);
         }
+
+		public void DeleteAllClient(Admin admin)
+		{
+			if (IsMyAdmin(admin))
+			{
+				_clients.Clear();
+
+				_sortedClients.Clear();
+			}
+			else
+			{
+				throw new Exception("Вы не админ");
+			}
+		}
+
     }
 }

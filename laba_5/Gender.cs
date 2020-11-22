@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace laba_5
 {
-    public class Gender
+	public class Gender
     {
         public enum Sex
         {
@@ -22,13 +22,13 @@ namespace laba_5
         public Gender(string sex, bool isStandartView = false)
         {
             // защита от некоректного ввода
-            int temp = _sex[(isStandartView) ? sex : StandartView.ConverteToStandartWord(sex)];
+            var temp = _sex[(isStandartView) ? sex : StandartView.ConverteToStandartWord(sex)];
 
             MySex = (temp == 1) ? Sex.masculine : (temp == 0) ? Sex.female : throw new Exception("Пол не определён");
         }
 
-        public static bool IsMyGender(string sex, bool isStandartView = false) 
-            => _sex.ContainsKey((isStandartView) ? sex : StandartView.ConverteToStandartWord(sex));
+		public static bool IsMyGender(string sex, bool isStandartView = false)
+			=> _sex.ContainsKey((isStandartView) ? sex : StandartView.ConverteToStandartWord(sex));
 
         // если что то это посоветовал компилятор
         public static bool operator ==(Gender c1, Gender c2) => c1.MySex == c2.MySex;

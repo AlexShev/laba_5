@@ -23,7 +23,7 @@ namespace laba_5
             get
             {
                 // там оказывается ещё сложнее из-за 29 февраля
-                int age = DateTime.Now.Year - MyBirthday.Year;
+                var age = DateTime.Now.Year - MyBirthday.Year;
 
                 if (DateTime.Now.Month < MyBirthday.Month || (DateTime.Now.Month == MyBirthday.Month && DateTime.Now.Day < MyBirthday.Day))
                 {
@@ -68,7 +68,7 @@ namespace laba_5
                 return 0;
             }
 
-            int result = MyCompatibilityByName.IsAPaer(person.MyCompatibilityByName);
+            var result = MyCompatibilityByName.IsAPaer(person.MyCompatibilityByName);
 
             result += MyZodiacSign.IsAPaer(person.MyZodiacSign);
 
@@ -78,7 +78,7 @@ namespace laba_5
         // clear ot cuda
         public void Show()
         {
-            Console.WriteLine($"ФИО {MyFulName} пол {MySex} родился {MyBirthday.ToShortDateString()} возраст {MyAge} знак задиака {MyZodiacSign.ToString()}");
+            Console.WriteLine($"ФИО {MyFulName} пол {MySex} родился {MyBirthday.ToShortDateString()} возраст {MyAge} знак задиака {MyZodiacSign}");
         }
     }
 }
