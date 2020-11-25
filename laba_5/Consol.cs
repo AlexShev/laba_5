@@ -10,6 +10,8 @@ namespace laba_5
         {
             var dataBase = new DataBase();
 
+			dataBase.GeneratorDataBase(1000);
+
 			var condition = true;
 
             while (condition)
@@ -389,13 +391,13 @@ namespace laba_5
                     {
                         strArrey = StandartView.ToStringArray(Console.ReadLine());
 
-                        if (strArrey.Length == 3)
+                        if (strArrey.Length == 2)
                         {
                             break;
                         }
                         else
                         {
-                            Console.WriteLine("\nВы что-то так ввели, должно быть три параметра - фамилия, имя, отчество\n");
+                            Console.WriteLine("\nВы что-то так ввели, должно быть три параметра - фамилия, имя\n");
 
                             Console.WriteLine("Если у Вас составное имя/фамилия - пишите через тире\n");
 
@@ -403,11 +405,8 @@ namespace laba_5
                         }
                     }
 
-                    for (var i = 0; i < 3; i++)
-                    {
-                        res += SetString(strArrey[i]) + ' ';
-                    }
-
+                    res += SetString(strArrey[0]) + ' ' + SetString(strArrey[1]);
+                    
                     break;
                 }
                 catch (Exception)

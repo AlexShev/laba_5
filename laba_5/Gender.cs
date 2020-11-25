@@ -15,14 +15,14 @@ namespace laba_5
 
         private static readonly SortedDictionary<string, int> _sex = new SortedDictionary<string, int>
         {
-            ["F"] = 0, ["Female"] = 0, ["Fem"] = 0, ["Ж"] = 0, ["Женский"] = 0, ["Жен"] = 0,
-            ["M"] = 1, ["Masculine"] = 1, ["Masc"] = 1, ["М"] = 1, ["Мужской"] = 1, ["Муж"] = 1
+            ["f"] = 0, ["female"] = 0, ["fem"] = 0, ["ж"] = 0, ["женский"] = 0, ["жен"] = 0,
+            ["m"] = 1, ["masculine"] = 1, ["male"] = 1, ["м"] = 1, ["мужской"] = 1, ["муж"] = 1
         };
 
         public Gender(string sex, bool isStandartView = false)
         {
             // защита от некоректного ввода
-            var temp = _sex[(isStandartView) ? sex : StandartView.ConverteToStandartWord(sex)];
+            var temp = _sex[(isStandartView) ? sex : sex.ToLower()];
 
             MySex = (temp == 1) ? Sex.masculine : (temp == 0) ? Sex.female : throw new Exception("Пол не определён");
         }

@@ -38,8 +38,23 @@ namespace laba_5
             return _sortedClients[client.MyCity].ChoesPartTounBySex(client, oppositeSex);
         }
 
-        // не смог объеденить - ругается что не может преобразовать базовый класс в производные
-        public void AddAdmin(Admin admin)
+		public void GeneratorDataBase(int size)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				try
+				{
+					var clientGen = new GeneratorUserInfoClient();
+
+					AddСlient(new Client(clientGen.Generate(), true));
+
+				}
+				catch (Exception){}
+			}
+		}
+
+		// не смог объеденить - ругается что не может преобразовать базовый класс в производные
+		public void AddAdmin(Admin admin)
         {
             _admins.Add(admin.Login, admin);
         }

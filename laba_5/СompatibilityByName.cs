@@ -8,15 +8,15 @@ namespace laba_5
         private static readonly Dictionary<int, SortedSet<char>> _map
             = new Dictionary<int, SortedSet<char>>
             {
-                {1, new SortedSet<char> {'а', 'и','с', 'ъ'} },
-                {2, new SortedSet<char> {'б', 'й','т', 'ы'} },
-                {3, new SortedSet<char> {'в', 'к','у', 'ь'} },
-                {4, new SortedSet<char> {'г', 'л','ф', 'э'} },
-                {5, new SortedSet<char> {'д', 'м','х', 'ю'} },
-                {6, new SortedSet<char> {'е', 'н','ц', 'я'} },
-                {7, new SortedSet<char> {'ё', 'о','ч'} },
-                {8, new SortedSet<char> {'ж', 'п','ш'} },
-                {9, new SortedSet<char> {'з', 'р','щ'} },
+                {1, new SortedSet<char> {'а', 'и','с', 'ъ', 'a', 'j', 's'} },
+                {2, new SortedSet<char> {'б', 'й','т', 'ы', 'b', 'k', 't'} },
+                {3, new SortedSet<char> {'в', 'к','у', 'ь', 'c', 'l', 'u'} },
+                {4, new SortedSet<char> {'г', 'л','ф', 'э', 'd', 'm', 'v'} },
+                {5, new SortedSet<char> {'д', 'м','х', 'ю', 'e', 'n', 'w'} },
+                {6, new SortedSet<char> {'е', 'н','ц', 'я', 'f', 'o', 'x'} },
+                {7, new SortedSet<char> {'ё', 'о','ч',      'g', 'p', 'y'} },
+                {8, new SortedSet<char> {'ж', 'п','ш',      'h', 'q', 'z'} },
+                {9, new SortedSet<char> {'з', 'р','щ',      'i', 'r'} },
             };
 
         private static readonly int[,] _arr =

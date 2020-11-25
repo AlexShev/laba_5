@@ -74,11 +74,5 @@ namespace laba_5
 
             return result;
         }
-
-        // clear ot cuda
-        public void Show()
-        {
-            Console.WriteLine($"ФИО {MyFulName} пол {MySex} родился {MyBirthday.ToShortDateString()} возраст {MyAge} знак задиака {MyZodiacSign}");
-        }
     }
 }
