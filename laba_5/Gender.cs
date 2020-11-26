@@ -19,16 +19,16 @@ namespace laba_5
             ["m"] = 1, ["masculine"] = 1, ["male"] = 1, ["м"] = 1, ["мужской"] = 1, ["муж"] = 1
         };
 
-        public Gender(string sex, bool isStandartView = false)
+        public Gender(string sex)
         {
             // защита от некоректного ввода
-            var temp = _sex[(isStandartView) ? sex : sex.ToLower()];
+            var temp = _sex[sex.ToLower()];
 
             MySex = (temp == 1) ? Sex.masculine : (temp == 0) ? Sex.female : throw new Exception("Пол не определён");
         }
 
 		public static bool IsMyGender(string sex, bool isStandartView = false)
-			=> _sex.ContainsKey((isStandartView) ? sex : StandartView.ConverteToStandartWord(sex));
+			=> _sex.ContainsKey(sex.ToLower());
 
         // если что то это посоветовал компилятор
         public static bool operator ==(Gender c1, Gender c2) => c1.MySex == c2.MySex;

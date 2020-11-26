@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace laba_5
 {
@@ -10,7 +11,17 @@ namespace laba_5
         {
             var dataBase = new DataBase();
 
-			dataBase.GeneratorDataBase(1000);
+
+
+			// я считаю, никто не должен знать, что данные вымешленные, поэтому захардкодил
+
+			// генерит 4 минуты
+			//dataBase.GenerateCityInDataBase(500, "Таганрог");
+
+			//dataBase.GenerateCityInDataBase(20, "Ростов-на-Дону");
+
+
+
 
 			var condition = true;
 
@@ -52,7 +63,7 @@ namespace laba_5
 
 		private static void Сontinue()
         {
-			Console.Write("Для продолжения нажмите любую клавишу");
+			Console.WriteLine("\nДля продолжения нажмите любую клавишу");
 
 			Console.ReadKey();
 
@@ -71,13 +82,8 @@ namespace laba_5
 
 				if (isNewClient)
 				{
-					Console.Write("Если хотите продолжить нажмите 1, иначе другую клавишу... ");
 
-					var condition = Console.ReadKey().Key;
-
-					Console.Clear();
-
-					if (!(condition == ConsoleKey.D1))
+					if (!Confirmation())
 					{
 						return;
 					}
@@ -166,7 +172,15 @@ namespace laba_5
 			}
         }
 
-        private static void MenuForClient()
+		private static bool Confirmation()
+		{
+			Console.Write("\nЕсли хотите продолжить нажмите Enter, иначе другую клавишу... ");
+
+			return Console.ReadKey().Key == ConsoleKey.Enter;
+		}
+
+
+		private static void MenuForClient()
         {
             Console.WriteLine("1: Подобрать пару");
             Console.WriteLine("2: Поощрить нашу работу");
@@ -182,20 +196,48 @@ namespace laba_5
 
 			var maxDiferentAge = int.Parse(Console.ReadLine());
 
-            foreach (var c in dataBase.FindPiars(person, maxDiferentAge))
-            {
-                foreach (var c1 in c.Value)
-                {
-					Console.Write($"\n\n№{++counter} ");
+			var temp = dataBase.FindPiars(person, maxDiferentAge);
 
-					PrintClient(c1);
-                }
+			if (temp.Any())
+			{
+				Console.WriteLine("\nЧем ближе число к 100, тем больше Вам подходит человек\n");
+
+				var flag = false;
+
+				foreach (var c in temp)
+				{
+					if (flag) break;
+
+					Console.WriteLine($"\n===================================================={c.Key}====================================================\n");
+
+					foreach (var c1 in c.Value)
+					{
+						if (counter % 5 == 0 && counter != 0)
+						{
+							if (!Confirmation())
+							{
+								flag = true;
+
+								break;
+							}
+							else
+							{
+								Console.WriteLine();
+							}
+						}
+
+						Console.Write($"\n№{++counter} ");
+
+						PrintClient(c1);
+					}
+				}
+			}
+			else
+            {
+                Console.WriteLine("Мы не смогли подобрать Вам пару, подождите немного, надеемся, что скоро мы сможем это сделать");
             }
 
-			if(counter == 0)
-            {
-                Console.Write("Мы не смогли подобрать Вам пару, подождите немного, надеемся, что скоро мы сможем это сделать\n");
-            }
+			Console.WriteLine("\n====================================================КОНЕЦ СПИСКА====================================================\n");
 
 			Сontinue();
 		}

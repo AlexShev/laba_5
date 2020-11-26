@@ -19,23 +19,35 @@ namespace laba_5
 			_httpClient.Dispose();
 		}
 
-		private string GeneratePhoneNumber()
+		private static string GeneratePhoneNumber()
 		{
-			var rand = new Random();
-			
-			return $"+7({rand.Next(000, 999)})-{rand.Next(000, 999)}-{rand.Next(00, 99)}-{rand.Next(00, 99)}";
+			return $"+7({RandomNumberString(3)})-{RandomNumberString(3)}-{RandomNumberString(2)}-{RandomNumberString(2)}";
 		}
 
-		public string[] Generate()
+		private static string RandomNumberString(byte size)
+		{
+			var result = string.Empty;
+
+			var rand = new Random();
+
+			for (byte i = 0; i < size; i++)
+			{
+				result += rand.Next(0, 9);
+			}
+
+			return result;
+		}
+
+		public string[] GenerateСlient(string city = null)
 		{
 			var responseMessage = _httpClient.GetAsync("https://randomuser.me/api/?inc=gender,name,location,login,dob,nat=gb&noinfo").Result;
 
 			var contentString = responseMessage.Content.ReadAsStringAsync().Result;
 
-			// зато работает)
+			// я так и не понял почему я не могу обойтись без листа
 			var a = JsonSerializer.Deserialize<Root>(contentString).results.First();
 
-			string[] result = new string[7];
+			var result = new string[7];
 
 			result[0] = a.login.username;
 
@@ -47,7 +59,8 @@ namespace laba_5
 
 			result[4] = a.dob.date.ToShortDateString();
 
-			result[5] = a.location.city;
+			// не смог использовать ??  кишки тонки
+			result[5] = (city == null) ? a.location.city : StandartView.ConverteToStandartString(city);
 
 			result[6] = GeneratePhoneNumber();
 

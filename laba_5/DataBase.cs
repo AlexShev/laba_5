@@ -21,7 +21,6 @@ namespace laba_5
 
             public List<Client> ChoesPartTounBySex(Client client, bool oppositeSex = false)
             {
-				// стоит ли это выносить или нет
                 var isMasculine = client.MySex.MySex == Gender.Sex.masculine;
 
                 return (oppositeSex) ? (isMasculine) ? _female : _masculine : (isMasculine) ? _masculine : _female;
@@ -38,22 +37,20 @@ namespace laba_5
             return _sortedClients[client.MyCity].ChoesPartTounBySex(client, oppositeSex);
         }
 
-		public void GeneratorDataBase(int size)
+		public void GenerateCityInDataBase(int size, string city = null)
 		{
-			for (int i = 0; i < size; i++)
+			for (var i = 0; i < size; i++)
 			{
 				try
 				{
-					var clientGen = new GeneratorUserInfoClient();
+					var generateСlient = new GeneratorUserInfoClient();
 
-					AddСlient(new Client(clientGen.Generate(), true));
-
+					AddСlient(new Client(generateСlient.GenerateСlient(city), true));
 				}
 				catch (Exception){}
 			}
 		}
 
-		// не смог объеденить - ругается что не может преобразовать базовый класс в производные
 		public void AddAdmin(Admin admin)
         {
             _admins.Add(admin.Login, admin);
@@ -89,7 +86,7 @@ namespace laba_5
             {
                 var tempScore = client.ScoreIsPaerWithoutSexAndLocalization(c, maxAgeDif);
 
-                if (tempScore > 3)
+                if (tempScore >= 25)
                 {
                     if (!result.ContainsKey(tempScore))
                     {
@@ -99,7 +96,6 @@ namespace laba_5
                     result[tempScore].Add(c);
                 }
             }
-
             return result.OrderByDescending(kvp => kvp.Key);
         }
 

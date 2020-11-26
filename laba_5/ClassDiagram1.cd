@@ -1,80 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="laba_5.FulName" Collapsed="true">
-    <Position X="5.25" Y="6.5" Width="1.5" />
+    <Position X="3" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEgAAAAAAAAEAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEgAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FulName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Client" Collapsed="true">
-    <Position X="4.75" Y="5.5" Width="1.5" />
+    <Position X="5.5" Y="4" Width="1.5" />
+    <InheritanceLine Type="laba_5.Human" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="3.096" />
+        <Point X="7.25" Y="3.625" />
+        <Point X="6.25" Y="3.625" />
+        <Point X="6.25" Y="4" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ADAAAAAKAIAAAgAAAAAACAAAAAAEBEAAAAAAAAAAAEA=</HashCode>
+      <HashCode>ADAAAAAKAIAAAgAAAAAACAAAAAAABEAAAAAAAAAAAEA=</HashCode>
       <FileName>Client.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Program" Collapsed="true">
-    <Position X="9.5" Y="3" Width="1.5" />
+    <Position X="11.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.ZodiacSign" Collapsed="true">
-    <Position X="3.5" Y="6.5" Width="1.5" />
+    <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAEAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ZodiacSign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.СompatibilityByName" Collapsed="true">
-    <Position X="7" Y="6.5" Width="1.5" />
+    <Position X="3" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAMAAAAAAAABAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>СompatibilityByName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.StandartView" Collapsed="true">
-    <Position X="4.75" Y="4" Width="1.5" />
+    <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIQAABACBAAAAAAAgEAQAAgAAAAAMAAAAAAAAAE=</HashCode>
       <FileName>StandartView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Human" Collapsed="true">
-    <Position X="6.5" Y="4" Width="1.5" />
+    <Position X="6.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQAAAAAAAAEAAAAgAAAAAAAAAAAAAAAAAAQAAAAAiA=</HashCode>
+      <HashCode>ABQAAAAAAAAEAAAAgAAAAAAAAAAAAIAAAAAQAAAAAiA=</HashCode>
       <FileName>Human.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Admin" Collapsed="true">
-    <Position X="8.5" Y="5.5" Width="1.5" />
+    <Position X="7.5" Y="4" Width="1.5" />
+    <InheritanceLine Type="laba_5.Human" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="7.25" Y="3.096" />
+        <Point X="7.25" Y="3.625" />
+        <Point X="8.25" Y="3.625" />
+        <Point X="8.25" Y="4" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Admin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.Gender" Collapsed="true">
-    <Position X="1.75" Y="6.5" Width="1.5" />
+    <Position X="3" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAEEAAAAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <HashCode>AAAEAAAAAIAAAAEEAAAAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
       <FileName>Gender.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.ConsolIneractor" Collapsed="true">
-    <Position X="7.5" Y="3" Width="1.5" />
+    <Position X="9.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABBAEAYQAAEAEAQAAQAAAIAAABEAADAAAAAAI=</HashCode>
+      <HashCode>AhAAAAABBAEAYQIAEEEAYAAQAAAIAAABMAADAAAAAAI=</HashCode>
       <FileName>Consol.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laba_5.DataBase" Collapsed="true">
-    <Position X="5.5" Y="3" Width="1.5" />
+    <Position X="7.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAQEAAAAAAIAQAABAAEAIAgAAABEBDAAAg=</HashCode>
+      <HashCode>AAAAAAAAACAQEAAAAAAIAQAABAAkAIAgAAAJEBDAAAg=</HashCode>
       <FileName>DataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.Name" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.Location" Collapsed="true">
+    <Position X="3" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.Login" Collapsed="true">
+    <Position X="3" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.Dob" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.Result" Collapsed="true">
+    <Position X="5.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIgAACAAAEAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba_5.Root" Collapsed="true">
+    <Position X="7.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="10" />

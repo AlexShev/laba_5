@@ -50,7 +50,7 @@ namespace laba_5
 
             MyPhoneNumber = (isStandartView) ? myPhoneNumber : StandartView.ConverteToStandartPhoneNumber(myPhoneNumber);
 
-            MySex = new Gender(sex, isStandartView);
+            MySex = new Gender(sex);
 
             MyZodiacSign = new ZodiacSign(MyBirthday);
 
@@ -72,7 +72,7 @@ namespace laba_5
 
             result += MyZodiacSign.IsAPaer(person.MyZodiacSign);
 
-            return result;
+            return result*5;
         }
     }
 }

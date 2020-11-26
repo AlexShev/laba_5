@@ -88,11 +88,11 @@ namespace laba_5
             }
             else if (temp == 2)
             {
-                return 6;
+                return 7;
             }
             else if (temp == 4)
             {
-                return 9;
+                return 11;
             }
 
             return 0;

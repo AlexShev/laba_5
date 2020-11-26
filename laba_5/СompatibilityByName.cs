@@ -37,6 +37,7 @@ namespace laba_5
         public СompatibilityByName(in string name)
         {
             var temp = 0;
+
             foreach (var c in name)
             {
                 for (var i = 1; i < 10; i++)
@@ -49,7 +50,10 @@ namespace laba_5
                     }
                 }
             }
-            MyNamber = DigitsSum(temp);
+
+			MyNamber = DigitsSum(DigitsSum(temp));
+
+			if (MyNamber < 1 || MyNamber > 9) throw new System.Exception("Не возможно обработать слова - возможно только английские и русские буквы");
         }
 
         public int IsAPaer(in СompatibilityByName person) => _arr[MyNamber - 1, person.MyNamber - 1];
